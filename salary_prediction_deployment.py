@@ -10,17 +10,18 @@ Original file is located at
 import streamlit as lit
 import pandas as pd
 import numpy as np
+import joblib
 
 model = joblib.load("salary_prediction_model.pk1")
 encoder = joblib.load("content/label_encoder.pk1")
 
 st.title("Salary Prediction")
 
-age = st.number_input("Age")
+age = st.number_input("Age",18,65)
 gender = st.selectbox("Gender",encoder["Gender"].classes_)
 education level = st.selectbox("Education Level",encoder["Education Level"].classes_)
 job title = st.selectbox("Job Title",encoder["Job Title"].classes_)
-years of experience = st.number_input("Years of Experience")
+years of experience = st.number_input("Years of Experience",0,50)
 
 df = pd.DataFrame({
     "Age":[age],
